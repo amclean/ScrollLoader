@@ -36,6 +36,8 @@ var scrollLoader = function(){
        this.setImagesPosition(jQuery(this.imageSelector));
        // start polling the scrollY
        this.startObserving();
+       // do an initial check on page load
+       this.checkScrollPosition();       
      },
      setImagesPosition: function(els){
        var me                   = this;
