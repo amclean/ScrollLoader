@@ -33,14 +33,13 @@ var scrollLoader = function(){
        // bind event scope
        this.boundEvents.checkScrollPosition = _.bind(this.checkScrollPosition,this);
        // store element position
-       this.setImagesPosition();
+       this.setImagesPosition(jQuery(this.imageSelector));
        // start polling the scrollY
        this.startObserving();
      },
-     setImagesPosition: function(){
-       var els       = jQuery(this.imageSelector);
-       var me        = this;
-       var scrollTop = window.scrollY + this.threshHold;
+     setImagesPosition: function(els){
+       var me                   = this;
+       var scrollTop            = window.scrollY + this.threshHold;
 
        els.each(function(i){
          var el                 = jQuery(this);
@@ -75,6 +74,11 @@ var scrollLoader = function(){
        this.lastChecked = scrollTop;
        this.isBusy      = false;
 
+     },
+     // Call this on subtantial page reflows
+     resetPositions: function(){
+       this.lastChecked = 0;
+       this.setImagesPosition(this.imagesToWatch);
      },
      // changes the rel attribute to the img src     
      loadImage: function(img){
