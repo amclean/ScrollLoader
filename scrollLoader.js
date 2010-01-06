@@ -43,7 +43,7 @@ var scrollLoader = function(){
        var scrollTop = window.scrollY + this.threshHold;
 
        els.each(function(i){
-         var el                 = $(this);
+         var el                 = jQuery(this);
          var top                = parseInt(el.offset().top)+i;
          me.imagesToWatch[top]  = el;
        });
